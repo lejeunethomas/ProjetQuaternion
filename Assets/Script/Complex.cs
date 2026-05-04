@@ -57,6 +57,12 @@ public class Complex
 
         return new Complex(numerator.real / denominator, numerator.imaginary / denominator);
     }
+    
+    // Transformation
+    public static Matrix2x2 Transform(Complex a)
+    {
+        return new Matrix2x2(a.real, -a.imaginary, a.imaginary, a.real);
+    }
 
     // Surcharge de la méthode ToString pour faciliter l'affichage dans la console Unity
     public override string ToString()

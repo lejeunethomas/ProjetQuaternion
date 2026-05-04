@@ -22,6 +22,12 @@ public class Matrix2x2
 
         return new Matrix2x2(r00, r01, r10, r11);
     }
+    
+    //Transformation
+    public static Complex Transform(Matrix2x2 a)
+    {
+        return new Complex(a.m00,a.m10);
+    }
 
     public override string ToString()
     {
