@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class NewEmptyCSharpScript
+public class Transformation2d
 {
     public static Complex Translate(Complex z, Complex t)
     {
