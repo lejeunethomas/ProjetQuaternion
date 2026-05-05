@@ -13,6 +13,14 @@ public class MyQuaternion
         this.z = z;
     }
 
+    public MyQuaternion AxisAngle(float theta, MyVector3 axis)
+    {
+        float demiTheta = theta / 2f;
+        
+        return new MyQuaternion((float)Mathf.cos(demiTheta), axis.x * (float)Mathf.sin(demiTheta),
+            axis.y * (float)Mathf.sin(demiTheta), axis.z * (float)Mathf.sin(demiTheta));
+    }
+
     public static MyQuaternion Add(MyQuaternion Q1, MyQuaternion Q2)
     {
         return new MyQuaternion(Q1.a + Q2.a, Q1.x + Q2.x, Q1.y + Q2.y, Q1.z + Q2.z);
@@ -48,5 +56,24 @@ public class MyQuaternion
         float nZ = (Q1.a * Q2.z) + (Q1.x * Q2.y) - (Q1.y * Q2.x) + (Q1.z * Q2.a);
         
         return new MyQuaternion(nA, nX, nY, nZ);
+    }
+
+    public Matrix3x3 ToMatrix()
+    {
+        float[,] matrix =  new float[3, 3];
+        
+        matrix[0, 0] = 1f - 2f(this.y * this.y + this.z * this.z);
+        matrix[0, 1] = 2f(this.x * this.y - this.a * this.z);
+        matrix[0, 2] = 2f(this.x * this.z + this.a * this.y);
+
+        matrix[1, 0] = 2f(this.x * this.y + this.a * this.z);
+        matrix[1, 1] = 1f - 2f(this.x * this.x + this.z * this.z);
+        matrix[1, 2] = 2f(this.y * this.z - this.a * this.x);
+
+        matrix[2, 0] = 2f(this.x * this.z - this.a * this.y);
+        matrix[2, 1] = 2f(this.y * this.z + this.a * this.x);
+        matrix[2, 2] = 1f - 2f(this.x * this.x + this.y * this.y);
+        
+        return new Matrix3x3( matrix );
     }
 }
