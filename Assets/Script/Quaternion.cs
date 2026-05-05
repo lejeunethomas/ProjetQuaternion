@@ -39,4 +39,14 @@ public class MyQuaternion
         
         return new MyQuaternion(a/norm, x/norm, y/norm, z/norm);
     }
+
+    public static MyQuaternion Multiply(MyQuaternion Q1, MyQuaternion Q2)
+    {
+        float nA = (Q1.a * Q2.a) - (Q1.x * Q2.x) - (Q1.y * Q2.y) - (Q1.z * Q2.z);
+        float nX = (Q1.a * Q2.x) + (Q1.x * Q2.a) + (Q1.y * Q2.z) - (Q1.z * Q2.y);
+        float nY = (Q1.a * Q2.y) - (Q1.x * Q2.z) + (Q1.y * Q2.a) + (Q1.z * Q2.x);
+        float nZ = (Q1.a * Q2.z) + (Q1.x * Q2.y) - (Q1.y * Q2.x) + (Q1.z * Q2.a);
+        
+        return new MyQuaternion(nA, nX, nY, nZ);
+    }
 }
