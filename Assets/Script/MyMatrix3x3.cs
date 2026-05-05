@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class Matrix3x3
+public class MyMatrix3x3
 {
     public float[,] m =  new float[3, 3];
 
-    public Matrix3x3(float[,] m)
+    public MyMatrix3x3(float[,] m)
     {
         this.m = m;
     }
 
-    public static Matrix3x3 Multiply(Matrix3x3 m1, Matrix3x3 m2)
+    public static MyMatrix3x3 Multiply(MyMatrix3x3 m1, MyMatrix3x3 m2)
     {
         float[,] result = new float[3, 3];
         
@@ -21,6 +21,6 @@ public class Matrix3x3
             }
         }
         
-        return new Matrix3x3(result);
+        return new MyMatrix3x3(result);
     }
 }
