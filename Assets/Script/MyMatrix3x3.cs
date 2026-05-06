@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MyMatrix3x3
 {
-    public float[,] m =  new float[3, 3];
+    public float[,] m = new float[3, 3];
 
     public MyMatrix3x3(float[,] m)
     {
@@ -22,5 +22,16 @@ public class MyMatrix3x3
         }
         
         return new MyMatrix3x3(result);
+    }
+
+    // Multiplication d'une matrice 3x3 par un vecteur 3D
+    public static MyVector3 MultiplyVector(MyMatrix3x3 m, MyVector3 v)
+    {
+        // Produit matriciel ligne * colonne
+        float nX = (m.m[0, 0] * v.x) + (m.m[0, 1] * v.y) + (m.m[0, 2] * v.z);
+        float nY = (m.m[1, 0] * v.x) + (m.m[1, 1] * v.y) + (m.m[1, 2] * v.z);
+        float nZ = (m.m[2, 0] * v.x) + (m.m[2, 1] * v.y) + (m.m[2, 2] * v.z);
+        
+        return new MyVector3(nX, nY, nZ);
     }
 }

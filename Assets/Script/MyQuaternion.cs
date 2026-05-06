@@ -80,4 +80,29 @@ public class MyQuaternion
             axis.z * Mathf.Sin(demiTheta)
         );
     }
+
+
+    // Rotation d'un point (vecteur) avec la formule du produit sandwich
+    public static MyVector3 RotateVector(MyQuaternion q, MyVector3 v)
+    {
+        // Transformer le vecteur en quaternion pur
+        MyQuaternion p = new MyQuaternion(0f, v.x, v.y, v.z);
+        
+        //Calculer le conjugué de q
+        MyQuaternion qConj = Conjugaison(q);
+        
+        // Produit sandwich : q * p * qConj
+        MyQuaternion qp = Multiply(q, p);
+        MyQuaternion resultatFinal = Multiply(qp, qConj);
+        
+        // Retourner le nouveau vecteur
+        return new MyVector3(resultatFinal.x, resultatFinal.y, resultatFinal.z);
+    }
+
+    // Convertit ton quaternion pour qu'Unity puisse l'utiliser sur un Transform
+    public UnityEngine.Quaternion ToUnity()
+    {
+
+        return new UnityEngine.Quaternion(this.x, this.y, this.z, this.a);
+    }
 }
